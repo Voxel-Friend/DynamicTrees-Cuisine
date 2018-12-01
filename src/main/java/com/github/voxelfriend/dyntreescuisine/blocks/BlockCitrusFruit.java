@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 public class BlockCitrusFruit extends BlockFruit {
 
 	public BlockCitrusFruit(String string) {
-		// TODO Auto-generated constructor stub
+
 	}
 
 }

@@ -15,7 +15,9 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.event.RegistryEvent;
@@ -36,18 +38,21 @@ public class ModBlocks {
 	
 	public static void preInit() {
 		
-		Block blockOrange = new BlockCitrusFruit("orange") {
-            public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-                if(state.getValue(AGE) >= 3) {
-                    drops.add(new ItemStack(orangeItem));
-                }
-            };
-        };
-		
 		Block blockLime = new BlockCitrusFruit("lime") {
             public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
                 if(state.getValue(AGE) >= 3) {
-                    drops.add(new ItemStack(limeItem));
+                    Item limeItem = Item.REGISTRY.getObject(new ResourceLocation("cuisine:food"));
+                    ItemStack limeStack = new ItemStack(limeItem, 1, 15);
+                    drops.add(limeStack);
+                }
+            };
+        };
+        Block blockOrange = new BlockCitrusFruit("orange") {
+            public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+                if(state.getValue(AGE) >= 3) {
+                    Item limeItem = Item.REGISTRY.getObject(new ResourceLocation("cuisine:food"));
+                    ItemStack limeStack = new ItemStack(limeItem, 1, 14);
+                    drops.add(limeStack);
                 }
             };
         };
