@@ -1,0 +1,7 @@
+{
+    "parent": "dynamictrees:item/branch",
+    "textures": {
+        "bark": "dyntreescuisine:blocks/orangelogbark",
+        "rings": "dyntreescuisine:blocks/orangelogrings"
+    }
+}
