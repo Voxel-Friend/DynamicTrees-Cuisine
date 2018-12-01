@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.github.voxelfriend.dyntreescuisine.blocks.BlockCitrusLog;
-import com.github.voxelfriend.dyntreescuisine.blocks.BlockFruit;
+import com.github.voxelfriend.dyntreescuisine.blocks.BlockCitrusFruit;
 import com.github.voxelfriend.dyntreescuisine.blocks.BlockIronLog;
 
 import net.minecraft.block.Block;
@@ -15,6 +15,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,12 +29,21 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModBlocks {
 
 	public static BlockCitrusLog citrusLog;
-	public static BlockFruit blockFruit;
+	public static BlockCitrusFruit blockFruit;
 
 	public static LeavesProperties citrusLeavesProperties;
 	public static LeavesProperties[] exampleLeavesProperties;
 	
 	public static void preInit() {
+		
+		Block blockLime = new BlockCitrusFruit("lime") {
+            public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+                if(state.getValue(AGE) >= 3) {
+                    drops.add(new ItemStack(limeItem));
+                }
+            };
+        };
+		
 		citrusLog = new BlockCitrusLog();
 		
 		//Set up primitive leaves. This controls what is dropped on shearing, leaves replacement, etc.
