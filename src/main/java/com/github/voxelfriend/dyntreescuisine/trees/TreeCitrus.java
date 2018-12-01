@@ -96,7 +96,38 @@ public class TreeCitrus extends TreeFamily {
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, Biomes.JUNGLE, Biomes.JUNGLE_EDGE, Biomes.JUNGLE_HILLS, Biomes.MUTATED_JUNGLE, Biomes.MUTATED_JUNGLE_EDGE );
 		}		
-    }	
+	}
+//////////////////////////////////////////////////////////////////////////////
+    public class TreeLimeSpecies extends SpeciesRare {
+
+    private static final String speciesName = "lime";
+    public final IBlockState unripeFruit;
+    public final IBlockState ripeFruit;
+
+    public TreeLimeSpecies(TreeFamily treeFamily) {
+        super(new ResourceLocation(treeFamily.getName().getResourceDomain(), speciesName), treeFamily, ModBlocks.citrusLeavesProperties);
+
+        setBasicGrowingParameters(0.4f, 10.0f, 1, 4, 0.7f);
+
+        envFactor(Type.COLD, 0.75f);
+        envFactor(Type.HOT, 0.75f);
+        envFactor(Type.DRY, 0.25f);
+        envFactor(Type.FOREST, 1.05f);
+
+        setupStandardSeedDropping();
+
+        generateSeed();
+
+        ripeFruit = ModBlocks.blockFruit.getDefaultState().withProperty(BlockFruit.AGE, 3);
+        unripeFruit = ModBlocks.blockFruit.getDefaultState().withProperty(BlockFruit.AGE, 0);
+        addGenFeature(new FeatureGenFruit(this, unripeFruit, ripeFruit).setRayDistance(4));
+    }
+
+    @Override
+    public boolean isBiomePerfect(Biome biome) {
+    return isOneOfBiomes(biome, Biomes.JUNGLE, Biomes.JUNGLE_EDGE, Biomes.JUNGLE_HILLS, Biomes.MUTATED_JUNGLE, Biomes.MUTATED_JUNGLE_EDGE );
+    }		
+}
 //////////////////////////////////////////////////////////////////////////////
 		
 	Species orangeSpecies;
