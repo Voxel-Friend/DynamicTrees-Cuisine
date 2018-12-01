@@ -3,9 +3,9 @@ package com.github.voxelfriend.dyntreescuisine;
 import java.util.ArrayList;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockFruit;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.github.voxelfriend.dyntreescuisine.blocks.BlockCitrusLog;
+import com.github.voxelfriend.dyntreescuisine.blocks.BlockFruit;
 import com.github.voxelfriend.dyntreescuisine.blocks.BlockIronLog;
 
 import net.minecraft.block.Block;

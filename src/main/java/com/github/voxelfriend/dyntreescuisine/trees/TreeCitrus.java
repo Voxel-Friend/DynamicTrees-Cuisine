@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFruit;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.github.voxelfriend.dyntreescuisine.ModBlocks;
 import com.github.voxelfriend.dyntreescuisine.ModConstants;
 
@@ -66,7 +67,7 @@ public class TreeCitrus extends TreeFamily {
 		
     }
 //////////////////////////////////////////////////////////////////////////////	
-	public class TreeOrangeSpecies extends Species {
+	public class TreeOrangeSpecies extends SpeciesRare {
 		
 		private static final String speciesName = "orange";
 		public final IBlockState unripeFruit;
@@ -74,8 +75,7 @@ public class TreeCitrus extends TreeFamily {
 		
 		public TreeOrangeSpecies(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), speciesName), treeFamily, ModBlocks.citrusLeavesProperties);
-			
-			//A bit stockier, smaller and slower than your basic oak
+
 			setBasicGrowingParameters(0.4f, 10.0f, 1, 4, 0.7f);
 			
 			envFactor(Type.COLD, 0.75f);
