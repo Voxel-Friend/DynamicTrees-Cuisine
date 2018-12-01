@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class TreeCitrus extends TreeFamily {
 	
@@ -94,16 +95,13 @@ public class TreeCitrus extends TreeFamily {
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, Biomes.JUNGLE, Biomes.JUNGLE_EDGE, Biomes.JUNGLE_HILLS, Biomes.MUTATED_JUNGLE, Biomes.MUTATED_JUNGLE_EDGE );
-		}
-		
-		@Override
-		public boolean isThick() {
-			return false;
-		}
-		
+		}		
     }	
 //////////////////////////////////////////////////////////////////////////////
 		
+	Species orangeSpecies;
+	Species limeSpecies;
+	
 	public TreeCitrus() {
 		super(new ResourceLocation(ModConstants.MODID, "citrus"));
 		
@@ -113,11 +111,19 @@ public class TreeCitrus extends TreeFamily {
 		ModBlocks.citrusLeavesProperties.setTree(this);
 	}
 
+	
 	@Override
-	public void createSpecies() {
-		setCommonSpecies(new TreeOrangeSpecies(this));
-		getCommonSpecies().generateSeed();
-	}
+    public void createSpecies() {
+        setCommonSpecies(new TreeCitrusSpecies(this));
+        orangeSpecies = new TreeOrangeSpecies(this);
+        limeSpecies = new TreeOrangeSpecies(this);
+    }
+	@Override
+	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
+		super.registerSpecies(speciesRegistry);
+		speciesRegistry.register(orangeSpecies);
+		speciesRegistry.register(limeSpecies);
+}
 
 	
 }
