@@ -36,6 +36,14 @@ public class ModBlocks {
 	
 	public static void preInit() {
 		
+		Block blockOrange = new BlockCitrusFruit("orange") {
+            public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+                if(state.getValue(AGE) >= 3) {
+                    drops.add(new ItemStack(orangeItem));
+                }
+            };
+        };
+		
 		Block blockLime = new BlockCitrusFruit("lime") {
             public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
                 if(state.getValue(AGE) >= 3) {
